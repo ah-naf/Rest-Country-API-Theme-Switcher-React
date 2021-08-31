@@ -1,0 +1,143 @@
+.input-container {
+    margin: 4rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search {
+    width: 35rem;
+    background-color: var(--dark-Blue-Dark-Mode-Elements);
+    box-shadow: 0 1px 5px 0px rgba(0, 0, 0, .4);
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.light .search {
+    background-color: var(--White);
+}
+
+.light .search input,
+.light .search-icon,
+.light ::placeholder {
+    color: black !important;
+}
+
+.light :-ms-input-placeholder,
+.light ::-ms-input-placeholder {
+    color: black;
+}
+
+.search input {
+    width: 85%;
+    height: 100%;
+    padding: 1.25rem;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-weight: 600;
+}
+
+.search-icon {
+    margin: 0 0rem 0 2.5rem;
+    color: white;
+    font-size: 2rem;
+}
+
+::placeholder {
+    color: white;
+    font-weight: 600;
+    font-family: 'Nunito Sans', sans-serif;
+    opacity: 1;
+}
+
+ :-ms-input-placeholder {
+    color: white;
+    font-weight: 600;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+ ::-ms-input-placeholder {
+    color: white;
+    font-weight: 600;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.filter-container {
+    display: flex;
+    align-items: center;
+    padding: 1.25rem;
+    padding-left: 1.5rem;
+    background-color: var(--dark-Blue-Dark-Mode-Elements);
+    box-shadow: 0 1px 5px 0px rgba(0, 0, 0, .4);
+    position: relative;
+    border-radius: 5px;
+    cursor: pointer;
+    justify-content: space-between;
+}
+
+.light .filter-container,
+.light .filter-box {
+    background-color: var(--White);
+}
+
+.filter-box {
+    position: absolute;
+    width: 100%;
+    top: 105%;
+    left: 0;
+    background-color: var(--dark-Blue-Dark-Mode-Elements);
+    box-shadow: 0 1px 5px 0px rgba(0, 0, 0, .4);
+    z-index: 5;
+    border-radius: 5px;
+    max-height: 0rem;
+    overflow: hidden;
+    transition: all .3s;
+}
+
+.show {
+    max-height: 20rem;
+}
+
+.filter-items {
+    padding: 1.25rem;
+    padding-left: 1.5rem;
+}
+
+.filter-items p {
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+.filter-container p {
+    color: var(--White);
+}
+
+.light .filter-container p,
+.light .down-icon {
+    color: black;
+    font-weight: 600;
+}
+
+.down-icon {
+    color: white;
+    margin-left: 4rem;
+    font-size: 1.25rem;
+}
+
+@media screen and (max-width: 600px) {
+    .input-container {
+        flex-direction: column;
+    }
+    .filter-container {
+        width: 16rem;
+        margin-top: 3rem;
+    }
+    .search {
+        width: 100%;
+    }
+    .search input {
+        width: 100%;
+    }
+}

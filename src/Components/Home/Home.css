@@ -1,0 +1,67 @@
+main {
+    min-height: 100vh;
+    background-color: var(--Very-Dark-Blue-Dark-Mode-Background);
+}
+
+.light {
+    background-color: var(--Very-Light-Gray-Light-Mode-Background);
+}
+
+.light header {
+    background-color: var(--White);
+}
+
+.light header h1,
+.light header button {
+    color: #000;
+}
+
+header {
+    background-color: var(--dark-Blue-Dark-Mode-Elements);
+    display: flex;
+    padding: 2rem 6rem;
+    box-shadow: 0 0 5px 0px rgba(0, 0, 0, .5);
+}
+
+header h1 {
+    color: var(--White);
+    font-size: 2rem;
+}
+
+header button {
+    margin-left: auto;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: var(--White);
+    font-size: 1.25rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+header button span .moon {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+    transform: translateY(.15rem);
+}
+
+.container {
+    margin: 0 6rem;
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        margin: 0 2rem;
+    }
+    header {
+        padding: 2rem;
+    }
+    header h1 {
+        font-size: 1.25rem;
+    }
+    header button {
+        font-size: 1rem;
+    }
+}
