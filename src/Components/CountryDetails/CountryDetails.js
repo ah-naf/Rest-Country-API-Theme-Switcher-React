@@ -6,17 +6,19 @@ import Border from "../Border/Border";
 import Loading from "../Loading/Loading";
 import "./CountryDetails.css";
 
-export default function CountryDetails() {
-  let {ID} = useParams();
+export default function CountryDetails({ allCountry }) {
+  let { ID } = useParams();
+  const [id, setID] = useState(ID);
   const history = useHistory();
   const [loading, setLoading] = useState(true);
   const [details, setDetails] = useState({});
   const [borders, setBorders] = useState([]);
 
- 
   async function getData() {
     setLoading(true);
-    const response = await fetch(`https://restcountries.eu/rest/v2/alpha/${ID}`);
+    const response = await fetch(
+      `https://restcountries.eu/rest/v2/alpha/${id}`
+    );
     const json = await response.json();
     setDetails(json);
     setBorders(json.borders);
@@ -25,21 +27,24 @@ export default function CountryDetails() {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [id]);
 
   const back = (text) => {
-    history.push('/country' + text);
-  }
+    history.replace("/country/" + text);
+  };
 
+  const getCode = (c) => {
+    setID(c);
+  };
 
-  if(loading) {
+  if (loading) {
     return <Loading />;
   }
 
   return (
     <section>
       <div className="back-container">
-        <button onClick={() => back('/')}>
+        <button onClick={() => back("")}>
           <span>
             {" "}
             <BsArrowLeft className="left-arrow" />{" "}
@@ -47,7 +52,7 @@ export default function CountryDetails() {
           Back
         </button>
       </div>
-      
+
       <div className="details">
         <div className="flag">
           <img src={details.flag} alt="" />
@@ -74,52 +79,48 @@ export default function CountryDetails() {
             </div>
             <div className="block">
               <p>
-                Top Level Domain: 
-                {
-                  details.topLevelDomain.map((item,index) => {
-                    if(index === details.topLevelDomain.length-1) {
-                      return <span key={index}>{item}</span>
-                    } else {
-                      return <span key={index}>{item},</span>
-                    }
-                  })
-                }
+                Top Level Domain:
+                {details.topLevelDomain.map((item, index) => {
+                  if (index === details.topLevelDomain.length - 1) {
+                    return <span key={index}>{item}</span>;
+                  } else {
+                    return <span key={index}>{item},</span>;
+                  }
+                })}
               </p>
               <p>
                 Currencies:{" "}
-                {
-                  details.currencies.map((item,index) => {
-                    if(index === details.currencies.length-1) {
-                      return <span key={index}>{item.name}</span>
-                    } else {
-                      return <span key={index}>{item.name},</span>
-                    }
-                  })
-                }
+                {details.currencies.map((item, index) => {
+                  if (index === details.currencies.length - 1) {
+                    return <span key={index}>{item.name}</span>;
+                  } else {
+                    return <span key={index}>{item.name},</span>;
+                  }
+                })}
               </p>
               <p>
                 Languages:
-                {
-                  details.languages.map((item,index) => {
-                    if(index === details.languages.length-1) {
-                      return <span key={index}>{item.name}</span>
-                    } else {
-                      return <span key={index}>{item.name},</span>
-                    }
-                  })
-                }
+                {details.languages.map((item, index) => {
+                  if (index === details.languages.length - 1) {
+                    return <span key={index}>{item.name}</span>;
+                  } else {
+                    return <span key={index}>{item.name},</span>;
+                  }
+                })}
               </p>
             </div>
           </div>
           <div className="border">
-              <p>Border Countries: </p>
-              <Route path={`/country/:ID`}>
-                <Border borders={borders} back={back} />
-              </Route>
+            <p>Border Countries: </p>
+            <Border
+              borders={borders}
+              back={back}
+              allCountry={allCountry}
+              getCode={getCode}
+            />
           </div>
         </div>
       </div>
-      
     </section>
   );
 }

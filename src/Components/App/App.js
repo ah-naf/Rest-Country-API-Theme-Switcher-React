@@ -1,37 +1,80 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
-import SocialMediaList from '../SocialMediaList/SocialMediaList';
-import DashBoardList from '../DashBoardList/DashBoardList';
-
+import {
+  Switch,
+  Route,
+  Redirect,
+  BrowserRouter as Router,
+  withRouter,
+} from "react-router-dom";
+import "./App.css";
+import Home from "../Home/Home";
+import CountryDetails from "../CountryDetails/CountryDetails";
+import Header from "../Header/Header";
+import { useEffect, useState } from "react";
+import Loading from "../Loading/Loading";
+import { createBrowserHistory } from "history";
 
 function App() {
+  const [allCountry, setAllCountry] = useState([]);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [darkMode, setDarkMode] = useState(true);
-  const toggleMode = () => {
+  const history = createBrowserHistory();
+
+  const changeMode = () => {
     setDarkMode(!darkMode);
+  };
+
+  const filterData = (region) => {
+    const temp = allCountry.filter((item) => item.region === region);
+    setData(temp);
+  };
+
+  const searchFilter = (name) => {
+    let n = name.toLowerCase();
+    const temp = allCountry.filter(
+      (item) => item.name.toLowerCase().search(n) >= 0
+    );
+    setData(temp);
+  };
+
+  async function getData() {
+    setLoading(true);
+    const response = await fetch("https://restcountries.eu/rest/v2/all");
+    const json = await response.json();
+    setData(json);
+    setAllCountry(json);
+    setLoading(false);
   }
+
   useEffect(() => {
-    if(darkMode) {
-      document.body.classList.remove('light');
-    } else {
-      document.body.classList.add('light');
-    }
-  },[darkMode])
+    getData();
+  }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
-    <main>
-      <div className={`content ${darkMode ? '':'content-light'}`}>
-        <div className={`text ${darkMode ? '':'text-light'}`}>
-          <h1>Social Media Dashboard</h1>
-          <p>Total Followers: 23,004</p>
-        </div>
-        <div className={`toggle-container ${darkMode ? '':'toggle-container-light'}`}>
-          <p>Dark Mode</p>
-          <div className="toggle" onClick={toggleMode}>
-            <div className={`circle ${darkMode ? '':'move'}`}></div>
-          </div>
-        </div>
-      </div>
-      <SocialMediaList darkMode={darkMode} />
-      <DashBoardList darkMode={darkMode} />
+    <main className={!darkMode ? "light" : ""}>
+      <Header changeMode={changeMode} darkMode={darkMode} />
+      <Router>
+        <Switch>
+          <Route path={"/country/:ID"}>
+            <CountryDetails allCountry={allCountry} />
+          </Route>
+          <Route path={"/country"}>
+            <Home
+              data={data}
+              filterData={filterData}
+              searchFilter={searchFilter}
+              darkMode={darkMode}
+            />
+          </Route>
+          <Route path={"/"} exact>
+            <Redirect to="/country" exact />
+          </Route>
+        </Switch>
+      </Router>
     </main>
   );
 }
