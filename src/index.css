@@ -1,19 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap');
 :root {
-    --dark-Blue-Dark-Mode-Elements: hsl(209, 23%, 22%);
-    --Very-Dark-Blue-Dark-Mode-Background: hsl(207, 26%, 17%);
-    --Very-Dark-Blu-Light-Mode-Text: hsl(200, 15%, 8%);
-    --Dark-Gray-Light-Mode-Input: hsl(0, 0%, 52%);
-    --Very-Light-Gray-Light-Mode-Background: hsl(0, 0%, 98%);
-    --White: hsl(0, 0%, 100%);
+    /* Primary Color */
+    --lime-green: hsl(163, 72%, 41%);
+    --bright-red: hsl(356, 69%, 56%);
+    --facebook: hsl(208, 92%, 53%);
+    --twitter: hsl(203, 89%, 53%);
+    --instagram-1: hsl(37, 97%, 70%);
+    --instagram-2: hsl(329, 70%, 58%);
+    --youTube: hsl(348, 97%, 39%);
+    /* Dark Theme */
+    --toggle-dark: linear-gradient(to right, hsl(210, 78%, 56%), hsl(146, 68%, 55%));
+    --toggle-light: hsl(230, 22%, 74%);
+    /* Neutral Color */
+    /* Dark Theme */
+    --very-dark-blue-BG: hsl(230, 17%, 14%);
+    --very-Dark-Blue-Top-BG-Pattern: hsl(232, 19%, 15%);
+    --dark-Desaturated-Blue-Card-BG: hsl(228, 28%, 20%);
+    --desaturated-Blue-Text: hsl(228, 34%, 66%);
+    /* Light Theme */
+    --very-Pale-Blue-Top-BG-Pattern: hsl(225, 100%, 98%);
+    --light-Grayish-Blue-Card-BG: hsl(227, 47%, 96%);
+    --dark-Grayish-Blue-Text: hsl(228, 12%, 44%);
+    --very-Dark-Blue-Text: hsl(230, 17%, 14%);
 }
 
 *,
 *::before,
 *::after {
     font-size: 14px;
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    transition: all .3s;
+}
+
+button,
+input,
+a {
+    font-family: 'Inter', sans-serif;
+}
+
+.social,
+.item-container {
+    box-shadow: 5px 5px rgba(0, 0, 0, .5);
 }

@@ -1,3 +1,169 @@
 body {
-    min-height: 100vh;
+    height: 100vh;
+    background-color: var(--very-dark-blue-BG);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.light {
+    background-color: white;
+}
+
+#root {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+main {
+    padding: 5%;
+}
+
+.content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.content::before {
+    content: '';
+    width: 100%;
+    height: 40%;
+    background: var(--very-Dark-Blue-Top-BG-Pattern);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -5;
+}
+
+.content::after {
+    content: '';
+    width: 100%;
+    height: 60%;
+    background: var(--very-dark-blue-BG);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -5;
+}
+
+.content-light::before {
+    content: '';
+    width: 100%;
+    height: 40%;
+    background: var(--very-Pale-Blue-Top-BG-Pattern);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -5;
+}
+
+.content-light::after {
+    content: '';
+    width: 100%;
+    height: 60%;
+    background: white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -5;
+}
+
+.text h1 {
+    color: white;
+    font-weight: 800;
+    font-size: 2.5rem;
+}
+
+.text-light h1 {
+    color: black;
+}
+
+.text-light p {
+    color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.text p {
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin-top: 1rem;
+}
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+}
+
+.toggle-container p {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 900;
+}
+
+.toggle {
+    width: 4rem;
+    height: 2rem;
+    background: var(--toggle-dark);
+    border-radius: 2rem;
+    margin-left: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0rem .35rem;
+}
+
+.toggle-container-light p {
+    color: var(--toggle-light);
+}
+
+.toggle-container-light .toggle {
+    background: var(--toggle-light);
+}
+
+.toggle-container-light .circle {
+    background: white;
+}
+
+.circle {
+    border-radius: 2rem;
+    width: 50%;
+    height: 75%;
+    background-color: var(--very-Dark-Blue-Text);
+    /* transform: translateX(85%); */
+    transition: all .3s;
+}
+
+.move {
+    transform: translateX(95%);
+}
+
+@media (max-width: 775px) {
+    .text h1 {
+        font-size: 2rem;
+    }
+    .text p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .content {
+        flex-direction: column;
+        justify-content: unset;
+        align-items: unset;
+    }
+    .text {
+        border-bottom: 1px solid rgba(128, 128, 128, 0.7);
+        padding-bottom: 2.5rem;
+    }
+    .toggle-container {
+        justify-content: space-between;
+        margin-top: 2rem;
+    }
+    .toggle-container p {
+        font-size: 1.5rem;
+    }
 }

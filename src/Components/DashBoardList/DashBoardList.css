@@ -1,0 +1,22 @@
+.dashboard-container {
+    width: 100%;
+}
+
+.dashboard-container h1 {
+    color: white;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.dashboard-container-light h1 {
+    color: black;
+    font-weight: 700;
+}
+
+.dashboard-items {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
